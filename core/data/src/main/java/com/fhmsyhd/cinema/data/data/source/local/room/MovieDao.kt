@@ -13,8 +13,8 @@ interface MovieDao {
     @Query("SELECT movie.* FROM movie INNER JOIN movie_category ON movie.movieId = movie_category.movieId WHERE movie_category.category = :category")
     fun getAllMovieByCategory(category: String): Flow<List<MovieEntity>>
 
-    @Query("SELECT * FROM similarMovie")
-    fun getAllSimilarMovie(): Flow<List<SimilarMovieEntity>>
+    @Query("SELECT * FROM similarMovie WHERE sourceMovieId = :sourceMovieId")
+    fun getAllSimilarMovie(sourceMovieId: String): Flow<List<SimilarMovieEntity>>
 
     @Query("SELECT * FROM movie where isFavorite = 1")
     fun getFavoriteMovie(): Flow<List<MovieEntity>>
@@ -40,8 +40,8 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSimilarMovie(movie: List<SimilarMovieEntity>)
 
-    @Query("DELETE FROM similarMovie")
-    suspend fun deleteSimilarMovie()
+    @Query("DELETE FROM similarMovie WHERE sourceMovieId = :sourceMovieId")
+    suspend fun deleteSimilarMovie(sourceMovieId: String)
 
     @Transaction
     suspend fun updateFavoriteStatus(movieId: String, isFavorite: Boolean) {

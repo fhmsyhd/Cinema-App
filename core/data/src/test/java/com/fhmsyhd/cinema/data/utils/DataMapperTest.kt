@@ -73,4 +73,25 @@ class DataMapperTest {
 
         assertEquals(null, entities[0].posterPath)
     }
+
+    @Test
+    fun `mapSimilarResponsesToEntities should keep the source movie id`() {
+        val responses = listOf(
+            MovieResponse(
+                id = "similar-1",
+                title = "Similar Movie",
+                overview = "Overview",
+                releaseDate = "2024-01-01",
+                posterPath = "/poster.jpg",
+                popularity = 1.0,
+                voteAverage = 7.5,
+                voteCount = 100
+            )
+        )
+
+        val entities = DataMapper.mapSimilarResponsesToEntities("source-1", responses)
+
+        assertEquals("source-1", entities.single().sourceMovieId)
+        assertEquals("similar-1", entities.single().movieId)
+    }
 }

@@ -23,6 +23,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.clearInvocations
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
@@ -71,12 +72,12 @@ class DetailViewModelTest {
         `when`(getSimilarMovieUseCase(movieId)).thenReturn(flowOf(Resource.Success(movies)))
 
         // Act
-        val result = detailViewModel.getSimilarMovie(movieId)
-        result.observeForever(movieObserver)
+        detailViewModel.similarMovies.observeForever(movieObserver)
+        detailViewModel.load(movieId)
 
         // Assert
         verify(movieObserver).onChanged(UiState.Success(movies))
-        result.removeObserver(movieObserver)
+        detailViewModel.similarMovies.removeObserver(movieObserver)
     }
 
     @Test
@@ -87,12 +88,12 @@ class DetailViewModelTest {
         `when`(getMovieReviewsUseCase(movieId)).thenReturn(flowOf(Resource.Success(reviews)))
 
         // Act
-        val result = detailViewModel.getMovieReviews(movieId)
-        result.observeForever(reviewObserver)
+        detailViewModel.reviews.observeForever(reviewObserver)
+        detailViewModel.load(movieId)
 
         // Assert
         verify(reviewObserver).onChanged(UiState.Success(reviews))
-        result.removeObserver(reviewObserver)
+        detailViewModel.reviews.removeObserver(reviewObserver)
     }
 
     @Test
@@ -106,5 +107,37 @@ class DetailViewModelTest {
 
         // Assert
         verify(setFavoriteMovieUseCase).invoke(movie, newStatus)
+    }
+
+    @Test
+    fun `cached similar movies should remain visible when refresh fails`() = runTest {
+        val movieId = "1"
+        val cachedMovies = listOf(
+            Movie("2", "Cached", "Overview", "2024", "/path.jpg", 1.0, 8.0, 100, false)
+        )
+        `when`(getSimilarMovieUseCase(movieId)).thenReturn(
+            flowOf(Resource.Error("offline", cachedMovies))
+        )
+
+        detailViewModel.similarMovies.observeForever(movieObserver)
+        detailViewModel.load(movieId)
+
+        verify(movieObserver).onChanged(UiState.Success(cachedMovies))
+        detailViewModel.similarMovies.removeObserver(movieObserver)
+    }
+
+    @Test
+    fun `retry reviews requests reviews again`() = runTest {
+        val movieId = "1"
+        `when`(getMovieReviewsUseCase(movieId)).thenReturn(flowOf(Resource.Error("offline")))
+
+        detailViewModel.reviews.observeForever(reviewObserver)
+        detailViewModel.load(movieId)
+        clearInvocations(getMovieReviewsUseCase)
+
+        detailViewModel.retryReviews()
+
+        verify(getMovieReviewsUseCase).invoke(movieId)
+        detailViewModel.reviews.removeObserver(reviewObserver)
     }
 }

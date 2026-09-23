@@ -2,12 +2,16 @@ package com.fhmsyhd.cinema.data.data.source.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.fhmsyhd.cinema.data.utils.Constant.TABLE_SIMILAR_MOVIE
 
-@Entity(tableName = TABLE_SIMILAR_MOVIE)
+@Entity(
+    tableName = TABLE_SIMILAR_MOVIE,
+    primaryKeys = ["sourceMovieId", "movieId"]
+)
 data class SimilarMovieEntity(
-    @PrimaryKey
+    @ColumnInfo(name = "sourceMovieId")
+    var sourceMovieId: String,
+
     @ColumnInfo(name = "movieId")
     var movieId: String,
 

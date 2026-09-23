@@ -30,6 +30,30 @@ private val MIGRATION_1_2 = object : Migration(1, 2) {
     }
 }
 
+private val MIGRATION_2_3 = object : Migration(2, 3) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL("DROP TABLE similarMovie")
+        database.execSQL(
+            """
+            CREATE TABLE IF NOT EXISTS similarMovie (
+                sourceMovieId TEXT NOT NULL,
+                movieId TEXT NOT NULL,
+                title TEXT NOT NULL,
+                overview TEXT NOT NULL,
+                releaseDate TEXT NOT NULL,
+                posterPath TEXT,
+                popularity REAL NOT NULL,
+                voteAverage REAL NOT NULL,
+                voteCount INTEGER NOT NULL,
+                isFavorite INTEGER NOT NULL,
+                backdropPath TEXT,
+                PRIMARY KEY(sourceMovieId, movieId)
+            )
+            """.trimIndent()
+        )
+    }
+}
+
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
@@ -62,7 +86,7 @@ class DatabaseModule {
     fun provideDatabase(@ApplicationContext context: Context): MovieDatabase = Room.databaseBuilder(
         context,
         MovieDatabase::class.java, DB_MOVIE
-    ).addMigrations(MIGRATION_1_2)
+    ).addMigrations(MIGRATION_1_2, MIGRATION_2_3)
         .fallbackToDestructiveMigration()
         .build()
 

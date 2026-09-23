@@ -2,45 +2,101 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardBackgroundColor="@color/color_primary_lighter"
-    app:cardCornerRadius="10dp">
+    android:layout_width="280dp"
+    android:layout_height="190dp"
+    android:layout_marginEnd="12dp"
+    app:cardBackgroundColor="@color/cinema_surface"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/cinema_surface_variant"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_margin="16dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tv_author"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            tools:text="Author" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@android:color/holo_orange_light"
-            android:textSize="14sp"
-            tools:text="Rating : 6.7" />
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:cardBackgroundColor="@color/cinema_gold"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:id="@+id/tv_author_initial"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/cinema_on_gold"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="F" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_author"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-medium"
+                    android:maxLines="1"
+                    android:textColor="@color/cinema_text_primary"
+                    android:textSize="15sp"
+                    tools:text="Movie Fan" />
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textColor="@color/cinema_gold"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    tools:text="★ 8.0" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_content"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="14dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="5"
+            android:textColor="@color/cinema_text_secondary"
+            android:textSize="14sp"
+            tools:text="A thoughtful review of the movie with enough text to demonstrate a concise preview inside the card." />
+
+        <TextView
+            android:id="@+id/tv_read_full"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            tools:text="@string/movie_overview" />
+            android:layout_gravity="end"
+            android:paddingTop="4dp"
+            android:text="@string/read_full_review"
+            android:textColor="@color/cinema_gold"
+            android:textSize="13sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

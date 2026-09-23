@@ -58,9 +58,13 @@ object DataMapper {
             )
         }
 
-    fun mapSimilarResponsesToEntities(input: List<MovieResponse>): List<SimilarMovieEntity> {
+    fun mapSimilarResponsesToEntities(
+        sourceMovieId: String,
+        input: List<MovieResponse>
+    ): List<SimilarMovieEntity> {
         return input.map {
             SimilarMovieEntity(
+                sourceMovieId = sourceMovieId,
                 movieId = it.id,
                 title = it.title,
                 overview = it.overview,

@@ -96,7 +96,7 @@ class MovieRepository @Inject constructor(
     override fun getAllSimilarMovie(movieId: String): Flow<Resource<List<Movie>>> =
         object : NetworkBoundResource<List<Movie>, List<MovieResponse>>(){
             override fun loadFromDB(): Flow<List<Movie>> {
-                return localDataSource.getAllSimilarMovie().map {
+                return localDataSource.getAllSimilarMovie(movieId).map {
                     DataMapper.mapSimilarEntitiesToDomain(it)
                 }
             }
@@ -107,8 +107,8 @@ class MovieRepository @Inject constructor(
                 remoteDataSource.getAllSimilarMovie(movieId)
 
             override suspend fun saveCallResult(data: List<MovieResponse>) {
-                localDataSource.deleteSimilarMovie()
-                val movieList = DataMapper.mapSimilarResponsesToEntities(data)
+                localDataSource.deleteSimilarMovie(movieId)
+                val movieList = DataMapper.mapSimilarResponsesToEntities(movieId, data)
                 localDataSource.insertSimilarMovie(movieList)
             }
         }.asFlow()

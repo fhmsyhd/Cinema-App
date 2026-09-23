@@ -16,7 +16,8 @@ class LocalDataSource @Inject constructor(private val movieDao: MovieDao) {
 
     fun getAllMovie(category: String): Flow<List<MovieEntity>> = movieDao.getAllMovieByCategory(category)
 
-    fun getAllSimilarMovie(): Flow<List<SimilarMovieEntity>> = movieDao.getAllSimilarMovie()
+    fun getAllSimilarMovie(sourceMovieId: String): Flow<List<SimilarMovieEntity>> =
+        movieDao.getAllSimilarMovie(sourceMovieId)
 
     fun getFavoriteMovie(): Flow<List<MovieEntity>> = movieDao.getFavoriteMovie()
 
@@ -29,7 +30,7 @@ class LocalDataSource @Inject constructor(private val movieDao: MovieDao) {
 
     suspend fun insertSimilarMovie(movieList: List<SimilarMovieEntity>) = movieDao.insertSimilarMovie(movieList)
 
-    suspend fun deleteSimilarMovie() = movieDao.deleteSimilarMovie()
+    suspend fun deleteSimilarMovie(sourceMovieId: String) = movieDao.deleteSimilarMovie(sourceMovieId)
 
     suspend fun setFavoriteMovie(movie: Movie, newState: Boolean) {
         // Jika film belum ada di tabel utama (misal baru dari similar movie), masukkan dulu

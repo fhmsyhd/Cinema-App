@@ -23,8 +23,8 @@
     <string name="movie_age_rating">Movie Age Rating</string>
     <string name="favorite">Favorite</string>
     <string name="title_favorite">Favorite</string>
-    <string name="share_movie">Im inviting you to watch movie %1$s</string>
-    <string name="title_similar">Similar Movie</string>
+    <string name="share_movie">I’m inviting you to watch %1$s.</string>
+    <string name="title_similar">Similar Movies</string>
     <string name="title_review">Reviews</string>
     <string name="title_now_showing">Now Showing</string>
     <string name="title_popular">Popular Movie</string>
@@ -44,4 +44,22 @@
     <string name="movie_poster_content_description">Poster for %1$s</string>
     <string name="movie_backdrop_content_description">Backdrop for %1$s</string>
     <string name="release_unknown">Release date unavailable</string>
+    <string name="back">Back</string>
+    <string name="add_to_favorites">Add to favorites</string>
+    <string name="remove_from_favorites">Remove from favorites</string>
+    <string name="votes_format">%1$s votes</string>
+    <string name="read_more">Read more</string>
+    <string name="read_less">Read less</string>
+    <string name="read_full_review">Read full review</string>
+    <string name="review_rating_format">★ %1$.1f</string>
+    <string name="review_not_rated">Not rated</string>
+    <string name="similar_movies_empty">No similar movies were found.</string>
+    <string name="reviews_empty">No reviews have been posted yet.</string>
+    <string name="similar_movies_error">We couldn’t load similar movies.</string>
+    <string name="reviews_error">We couldn’t load reviews.</string>
+    <string name="movie_unavailable">This movie’s details are unavailable.</string>
+    <string name="go_back">Go back</string>
+    <string name="overview_unavailable">No overview is available for this movie.</string>
+    <string name="unknown_author">Anonymous</string>
+    <string name="movie_image">Movie image</string>
 </resources>

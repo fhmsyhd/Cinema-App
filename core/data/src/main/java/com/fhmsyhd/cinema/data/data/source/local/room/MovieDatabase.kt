@@ -8,7 +8,7 @@ import com.fhmsyhd.cinema.data.data.source.local.entity.SimilarMovieEntity
 
 @Database(
     entities = [MovieEntity::class, SimilarMovieEntity::class, MovieCategoryEntity::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class MovieDatabase : RoomDatabase() {
