@@ -13,4 +13,14 @@
     <color name="color_primary_dark">#011227</color>
     <color name="color_secondary">#CF9E49</color>
     <color name="color_secondary_dark">#B78735</color>
+
+    <color name="cinema_background">#090E1A</color>
+    <color name="cinema_surface">#131B2B</color>
+    <color name="cinema_surface_variant">#202B40</color>
+    <color name="cinema_surface_highlight">#34435F</color>
+    <color name="cinema_text_primary">#F8FAFC</color>
+    <color name="cinema_text_secondary">#AEB8CC</color>
+    <color name="cinema_gold">#F4C15D</color>
+    <color name="cinema_on_gold">#241A05</color>
+    <color name="cinema_error">#FF9B93</color>
 </resources>

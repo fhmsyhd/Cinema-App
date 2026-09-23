@@ -33,4 +33,15 @@
     <string name="error_unknown">Unknown Error</string>
     <string name="error_empty_favorite">You don\'t have any favorite movies yet</string>
     <string name="rating_format">Rating : %1$.1f</string>
+    <string name="home_headline">Discover your next favorite movie</string>
+    <string name="featured_label">NOW PLAYING</string>
+    <string name="view_details">View details</string>
+    <string name="hero_metadata">★ %1$.1f  •  %2$s</string>
+    <string name="rating_short_format">★ %1$.1f</string>
+    <string name="retry">Try again</string>
+    <string name="section_error">We couldn’t load this collection.</string>
+    <string name="section_empty">No movies are available right now.</string>
+    <string name="movie_poster_content_description">Poster for %1$s</string>
+    <string name="movie_backdrop_content_description">Backdrop for %1$s</string>
+    <string name="release_unknown">Release date unavailable</string>
 </resources>

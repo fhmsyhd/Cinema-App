@@ -33,5 +33,8 @@ data class MovieEntity(
     var voteCount: Int,
 
     @ColumnInfo(name = "isFavorite")
-    var isFavorite: Boolean = false
+    var isFavorite: Boolean = false,
+
+    @ColumnInfo(name = "backdropPath")
+    var backdropPath: String? = null
 )

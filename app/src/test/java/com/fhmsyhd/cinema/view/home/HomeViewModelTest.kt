@@ -22,6 +22,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.clearInvocations
+import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
@@ -110,6 +112,37 @@ class HomeViewModelTest {
 
         // Assert
         verify(observer).onChanged(UiState.Success(movies))
+        homeViewModel.popularMovie.removeObserver(observer)
+    }
+
+    @Test
+    fun `when refresh fails with cached movies, it should keep showing cached content`() = runTest {
+        val cachedMovies = listOf(
+            Movie("3", "Cached Title", "Overview", "2025", "/cached.jpg", 3.0, 8.5, 150, false)
+        )
+        `when`(getTopRatedMovieUseCase()).thenReturn(
+            flowOf(Resource.Error("Network Error", cachedMovies))
+        )
+
+        homeViewModel = HomeViewModel(
+            getAllPlayingMovieUseCase,
+            getPopularMovieUseCase,
+            getTopRatedMovieUseCase
+        )
+        homeViewModel.topRatedMovie.observeForever(observer)
+
+        verify(observer).onChanged(UiState.Success(cachedMovies))
+        homeViewModel.topRatedMovie.removeObserver(observer)
+    }
+
+    @Test
+    fun `retry popular requests the use case again`() = runTest {
+        homeViewModel.popularMovie.observeForever(observer)
+        clearInvocations(getPopularMovieUseCase)
+
+        homeViewModel.retryPopular()
+
+        verify(getPopularMovieUseCase, times(1)).invoke()
         homeViewModel.popularMovie.removeObserver(observer)
     }
 }

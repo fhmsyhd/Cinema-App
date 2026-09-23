@@ -4,34 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/cinema_background"
     tools:context=".view.home.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/cinema_background"
+        android:elevation="0dp"
+        app:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="@string/app_name_uppercase"
+            android:background="@color/cinema_background"
             app:menu="@menu/action_menu_favorite"
-            app:titleCentered="true"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary" />
+            app:title="@string/app_name_uppercase"
+            app:titleCentered="false"
+            app:titleTextColor="@color/cinema_text_primary" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/homeScroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/appBar"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,79 +46,244 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_title_popular"
+                android:id="@+id/tvHomeHeadline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="18dp"
+                android:layout_marginTop="18dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/home_headline"
+                android:textColor="@color/cinema_text_primary"
+                android:textSize="28sp" />
+
+            <FrameLayout
+                android:id="@+id/heroContainer"
+                android:layout_width="match_parent"
+                android:layout_height="220dp">
+
+                <include
+                    android:id="@+id/loadingHero"
+                    layout="@layout/view_hero_shimmer"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/heroCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/cinema_surface"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    tools:visibility="visible">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imgHeroBackdrop"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/img_desc"
+                            android:scaleType="centerCrop"
+                            tools:src="@drawable/bg_image_placeholder" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_hero_gradient" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:orientation="vertical"
+                            android:padding="18dp">
+
+                            <TextView
+                                android:id="@+id/tvFeaturedLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_rating_chip"
+                                android:text="@string/featured_label"
+                                android:textColor="@color/cinema_on_gold"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvHeroTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="9dp"
+                                android:ellipsize="end"
+                                android:fontFamily="sans-serif-medium"
+                                android:maxLines="2"
+                                android:textColor="@color/cinema_text_primary"
+                                android:textSize="24sp"
+                                tools:text="Featured Movie Title" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tvHeroMetadata"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/cinema_text_secondary"
+                                    android:textSize="13sp"
+                                    tools:text="★ 8.4  •  2026" />
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnHeroDetails"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="42dp"
+                                    android:minHeight="0dp"
+                                    android:text="@string/view_details"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/cinema_on_gold"
+                                    app:backgroundTint="@color/cinema_gold"
+                                    app:cornerRadius="14dp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tvTitlePopular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="28dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="@string/title_popular"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="@color/color_primary"/>
+                android:textColor="@color/cinema_text_primary"
+                android:textSize="20sp" />
 
-            <include
-                android:id="@+id/loading_popular"
-                layout="@layout/view_loading_shimmer"
-                android:visibility="gone"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_movie_popular"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"/>
+                android:layout_height="236dp">
+
+                <include
+                    android:id="@+id/loadingPopular"
+                    layout="@layout/view_loading_shimmer"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvMoviePopular"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="4dp"
+                    android:visibility="gone"
+                    tools:listitem="@layout/item_movie"
+                    tools:visibility="visible" />
+
+                <include
+                    android:id="@+id/statePopular"
+                    layout="@layout/view_section_state"
+                    android:visibility="gone" />
+
+            </FrameLayout>
 
             <TextView
-                android:id="@+id/tv_title_top"
+                android:id="@+id/tvTitleTop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="@string/title_top_rated"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="@color/color_primary"/>
+                android:textColor="@color/cinema_text_primary"
+                android:textSize="20sp" />
 
-            <include
-                android:id="@+id/loading_top"
-                layout="@layout/view_loading_shimmer"
-                android:visibility="gone"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_movie_top"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"/>
+                android:layout_height="236dp">
+
+                <include
+                    android:id="@+id/loadingTop"
+                    layout="@layout/view_loading_shimmer"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvMovieTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="4dp"
+                    android:visibility="gone"
+                    tools:listitem="@layout/item_movie"
+                    tools:visibility="visible" />
+
+                <include
+                    android:id="@+id/stateTop"
+                    layout="@layout/view_section_state"
+                    android:visibility="gone" />
+
+            </FrameLayout>
 
             <TextView
-                android:id="@+id/tv_title_playing"
+                android:id="@+id/tvTitlePlaying"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="@string/title_now_playing"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="@color/color_primary"/>
+                android:textColor="@color/cinema_text_primary"
+                android:textSize="20sp" />
 
-            <include
-                android:id="@+id/loading_playing"
-                layout="@layout/view_loading_shimmer"
-                android:visibility="gone"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_movie_playing"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"/>
+                android:layout_height="236dp">
+
+                <include
+                    android:id="@+id/loadingPlaying"
+                    layout="@layout/view_loading_shimmer"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvMoviePlaying"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="4dp"
+                    android:visibility="gone"
+                    tools:listitem="@layout/item_movie"
+                    tools:visibility="visible" />
+
+                <include
+                    android:id="@+id/statePlaying"
+                    layout="@layout/view_section_state"
+                    android:visibility="gone" />
+
+            </FrameLayout>
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-    <include
-        android:id="@+id/view_error"
-        layout="@layout/view_error"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,7 +20,8 @@ object DataMapper {
                 popularity = it.popularity,
                 voteAverage = it.voteAverage,
                 voteCount = it.voteCount,
-                isFavorite = false
+                isFavorite = false,
+                backdropPath = it.backdropPath
             )
         }
     }
@@ -35,7 +36,8 @@ object DataMapper {
                 posterPath = it.posterPath,
                 popularity = it.popularity,
                 voteAverage = it.voteAverage,
-                voteCount = it.voteCount
+                voteCount = it.voteCount,
+                backdropPath = it.backdropPath
             )
         }
     }
@@ -51,7 +53,8 @@ object DataMapper {
                 popularity = it.popularity,
                 voteAverage = it.voteAverage,
                 voteCount = it.voteCount,
-                isFavorite = it.isFavorite
+                isFavorite = it.isFavorite,
+                backdropPath = it.backdropPath
             )
         }
 
@@ -66,7 +69,8 @@ object DataMapper {
                 popularity = it.popularity,
                 voteAverage = it.voteAverage,
                 voteCount = it.voteCount,
-                isFavorite = false
+                isFavorite = false,
+                backdropPath = it.backdropPath
             )
         }
     }
@@ -82,7 +86,8 @@ object DataMapper {
                 popularity = it.popularity,
                 voteAverage = it.voteAverage,
                 voteCount = it.voteCount,
-                isFavorite = it.isFavorite
+                isFavorite = it.isFavorite,
+                backdropPath = it.backdropPath
             )
         }
 
@@ -95,7 +100,8 @@ object DataMapper {
         popularity = input.popularity,
         voteAverage = input.voteAverage,
         voteCount = input.voteCount,
-        isFavorite = input.isFavorite
+        isFavorite = input.isFavorite,
+        backdropPath = input.backdropPath
     )
 
     fun mapReviewResponsesToDomain(input: List<ReviewResponse>): List<Review> =

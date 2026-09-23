@@ -2,6 +2,8 @@ package com.fhmsyhd.cinema.data.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.fhmsyhd.cinema.data.data.MovieRepository
 import com.fhmsyhd.cinema.data.data.source.local.room.MovieDao
 import com.fhmsyhd.cinema.data.data.source.local.room.MovieDatabase
@@ -20,6 +22,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+
+private val MIGRATION_1_2 = object : Migration(1, 2) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL("ALTER TABLE movie ADD COLUMN backdropPath TEXT")
+        database.execSQL("ALTER TABLE similarMovie ADD COLUMN backdropPath TEXT")
+    }
+}
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -53,7 +62,9 @@ class DatabaseModule {
     fun provideDatabase(@ApplicationContext context: Context): MovieDatabase = Room.databaseBuilder(
         context,
         MovieDatabase::class.java, DB_MOVIE
-    ).fallbackToDestructiveMigration().build()
+    ).addMigrations(MIGRATION_1_2)
+        .fallbackToDestructiveMigration()
+        .build()
 
     @Provides
     fun provideMovieDao(database: MovieDatabase): MovieDao = database.movieDao()

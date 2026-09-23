@@ -29,5 +29,8 @@ data class MovieSummaryEntity(
     val voteAverage: Double,
 
     @ColumnInfo(name = "voteCount")
-    val voteCount: Int
+    val voteCount: Int,
+
+    @ColumnInfo(name = "backdropPath")
+    val backdropPath: String? = null
 )

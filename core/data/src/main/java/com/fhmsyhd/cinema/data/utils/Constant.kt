@@ -10,6 +10,7 @@ object Constant {
     const val END_POINT_SIMILAR_MOVIE = "movie/{movie_id}/similar"
     const val END_POINT_REVIEW_MOVIE = "movie/{movie_id}/reviews"
     const val IMAGE_URL = "https://image.tmdb.org/t/p/w500"
+    const val BACKDROP_IMAGE_URL = "https://image.tmdb.org/t/p/w780"
 
     // Entity
     const val DB_MOVIE = "Movie.db"
