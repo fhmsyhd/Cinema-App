@@ -23,6 +23,12 @@ Cinema App explores now-playing, popular, and top-rated movies from TMDB. It was
   <img src="docs/screenshots/favorites.png" width="30%" alt="Cinema App favorites screen" />
 </p>
 
+<p align="center">
+  <a href="docs/portfolio/cinema-app-demo.mp4">Watch the 35-second app demo</a>
+  ·
+  <a href="docs/portfolio/case-study.md">Read the portfolio case study</a>
+</p>
+
 ## Highlights
 
 - Discover **now-playing, popular, and top-rated** movies in a focused home experience.
