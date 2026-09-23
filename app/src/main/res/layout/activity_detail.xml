@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_primary_dark"
+        tools:context=".view.detail.DetailActivity">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:indeterminateTintMode="src_atop"
+            android:indeterminateTint="@color/color_primary"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:elevation="2dp"
+            android:contentDescription="@string/img_desc"
+            android:src="@drawable/ic_back"/>
+
+        <ImageView
+            android:id="@+id/img_movie"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:contentDescription="@string/img_desc"
+            android:scaleType="centerCrop" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/layout_desc"
+            android:layout_alignBottom="@id/img_movie"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="40dp"
+            android:contentDescription="@string/img_desc"
+            android:src="@drawable/ic_love"
+            app:tint="@color/white"
+            app:backgroundTint="@color/color_primary_lighter"
+            app:elevation="2dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/layout_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_movie"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="-79dp"
+            app:cardBackgroundColor="@color/color_primary"
+            app:cardCornerRadius="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="24dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    tools:text="Movie Title" />
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@android:color/holo_orange_light"
+                    android:textSize="16sp"
+                    tools:text="Rating : 6.7" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:stretchColumns="1">
+
+                    <TableRow>
+
+                        <TextView
+                            android:padding="3dip"
+                            android:text="@string/release_title"
+                            android:textColor="@android:color/darker_gray" />
+
+                        <TextView
+                            android:id="@+id/tv_release"
+                            android:padding="3dip"
+                            android:text="@string/movie_release_date"
+                            android:textColor="@color/white" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_marginEnd="24dp"
+                            android:padding="3dip"
+                            android:text="@string/popularity_title"
+                            android:textColor="@android:color/darker_gray" />
+
+                        <TextView
+                            android:id="@+id/tv_popularity"
+                            android:padding="3dip"
+                            android:text="@string/movie_popularity"
+                            android:textColor="@color/white" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:padding="3dip"
+                            android:text="@string/age_rating_title"
+                            android:textColor="@android:color/darker_gray"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tv_age_rating"
+                            android:padding="3dip"
+                            android:text="@string/movie_age_rating"
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
+                    </TableRow>
+
+                </TableLayout>
+
+                <TextView
+                    android:id="@+id/tv_overview_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/overview_title"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_overview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/movie_overview"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/share"
+                    android:textAllCaps="false"
+                    android:textSize="18sp"
+                    app:backgroundTint="@color/color_primary_lighter" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/layout_similar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_desc"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="16dp"
+            app:cardBackgroundColor="@color/color_primary"
+            app:cardCornerRadius="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="24dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_title_similar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:text="@string/title_similar"/>
+
+                <include
+                    android:id="@+id/loading_similar"
+                    layout="@layout/view_loading_shimmer"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_movie_playing"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingVertical="8dp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/layout_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_similar"
+            android:layout_marginHorizontal="16dp"
+            app:cardBackgroundColor="@color/color_primary"
+            app:cardCornerRadius="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="24dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_title_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:text="@string/title_review"/>
+
+                <include
+                    android:id="@+id/loading_review"
+                    layout="@layout/view_loading_shimmer"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_movie_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingVertical="8dp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+
+</ScrollView>

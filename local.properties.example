@@ -1,0 +1,5 @@
+# Android SDK location. Replace this value with the path on your machine.
+sdk.dir=/path/to/Android/Sdk
+
+# Create a TMDB API key at https://www.themoviedb.org/settings/api
+TMDB_API_KEY=your_tmdb_api_key
