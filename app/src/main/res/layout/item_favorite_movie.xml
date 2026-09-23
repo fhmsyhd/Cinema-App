@@ -1,73 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="6dp"
-    app:cardBackgroundColor="@color/color_primary"
-    app:cardCornerRadius="10dp">
+    android:layout_margin="8dp"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingBottom="4dp"
+    tools:ignore="Overdraw">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <FrameLayout
+        android:id="@+id/poster_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="2:3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/img_movie"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/img_desc" />
-
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@color/cinema_surface_variant"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/img_movie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/movie_image"
+                android:scaleType="centerCrop" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tv_rating"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="start|top"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_rating_chip"
+            android:textColor="@color/cinema_on_gold"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="★ 7.3" />
+
+        <ImageButton
+            android:id="@+id/btn_remove_favorite"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_gravity="end|top"
             android:layout_margin="8dp"
-            android:orientation="vertical">
+            android:background="@drawable/bg_detail_icon_button"
+            android:contentDescription="@string/remove_from_favorites"
+            android:padding="10dp"
+            android:src="@drawable/ic_loved"
+            app:tint="@color/cinema_text_primary" />
 
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                tools:text="Movie Title" />
+    </FrameLayout>
 
-            <TextView
-                android:id="@+id/tv_release"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="12sp"
-                tools:text="25 January 2000" />
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="2"
+        android:minHeight="40dp"
+        android:textColor="@color/cinema_text_primary"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/poster_container"
+        tools:text="Resident Evil" />
 
-            <TextView
-                android:id="@+id/tv_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@android:color/holo_orange_light"
-                android:textSize="14sp"
-                tools:text="Rating : 6.7" />
+    <TextView
+        android:id="@+id/tv_release"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/cinema_text_secondary"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        tools:text="2026" />
 
-            <TextView
-                android:id="@+id/tv_overview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="12sp"
-                tools:text="@string/movie_overview" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

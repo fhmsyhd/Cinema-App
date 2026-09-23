@@ -62,4 +62,26 @@
     <string name="overview_unavailable">No overview is available for this movie.</string>
     <string name="unknown_author">Anonymous</string>
     <string name="movie_image">Movie image</string>
+    <string name="my_favorites">My Favorites</string>
+    <string name="no_favorites_title">No favorites yet</string>
+    <string name="no_favorites_message">Save movies you love and find them here.</string>
+    <string name="browse_movies">Browse movies</string>
+    <string name="sort_favorites">Sort favorites</string>
+    <string name="sort_by">Sort by</string>
+    <string name="sort_title">Title</string>
+    <string name="sort_rating">Rating</string>
+    <string name="sort_release_year">Release year</string>
+    <string name="removed_from_favorites">Removed from favorites</string>
+    <string name="undo">Undo</string>
+
+    <plurals name="favorite_count">
+        <item quantity="one">%d saved movie</item>
+        <item quantity="other">%d saved movies</item>
+    </plurals>
+
+    <string-array name="favorite_sort_options">
+        <item>@string/sort_title</item>
+        <item>@string/sort_rating</item>
+        <item>@string/sort_release_year</item>
+    </string-array>
 </resources>
